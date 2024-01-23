@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Spel!</title>
+    <style>
+        p.regel {
+            color: black;
+            background-color: lightgoldenrodyellow;
+            border: solid red 2px;
+            margin: 10px 10px 0 10px;
+            clear: left;
+            width: 178px;
+            padding: 10px;
+            font-size: 15px;
+            text-align: left;
+            border-radius: 0;
+            line-height: 18px;
+        }
+        div {
+            color: red;
+            background-color: lightblue;
+            padding: 10px;
+            margin: 10px;
+            border: solid red 2px;
+            width: 30px;
+            height: 30px;
+            float: left;
+            font-size: 25px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        div.først{
+            clear: left;        
+        }
+        p.svar {
+            color: black;
+            background-color: lightgoldenrodyellow;
+            border: solid red 2px;
+            margin: 10px;
+            clear: left;
+            width: 178px;
+            padding: 10px;
+            font-size: 15px;
+            text-align: left;
+            border-radius: 0;
+            line-height: 18px;
+        }
+    </style>
+</head>
+<body>
+    <p class="regel">
+        <big>Reglar</big> <br> Flytt tala slik at dei blir ståande i rekkjefølgje. Det vil seie 1, 2 og 3 på fyrste rad, 4, 5 og 6 på andre rad, og 7, 8 og den blanke ruta på siste rad.
+    </p>
+
+    <div id="r1k1" class="først" onclick="flytt(this,'r1k2','r2k1','r2k1','r2k1','svaret','r1k1','r1k2','r1k3','r2k1','r2k2','r2k3','r3k1','r3k2')">3</div>
+    <div id="r1k2" onclick="flytt(this,'r1k1','r1k3','r2k2','r2k2','svaret','r1k1','r1k2','r1k3','r2k1','r2k2','r2k3','r3k1','r3k2')">8</div>
+    <div id="r1k3" onclick="flytt(this,'r1k2','r2k3','r2k3','r2k3','svaret','r1k1','r1k2','r1k3','r2k1','r2k2','r2k3','r3k1','r3k2')">1</div>
+
+    <div id="r2k1" class="først" onclick="flytt(this,'r1k1','r2k2','r3k1','r3k1','svaret','r1k1','r1k2','r1k3','r2k1','r2k2','r2k3','r3k1','r3k2')">2</div>
+    <div id="r2k2" onclick="flytt(this,'r1k2','r2k1','r2k3','r3k2','svaret','r1k1','r1k2','r1k3','r2k1','r2k2','r2k3','r3k1','r3k2')">4</div>
+    <div id="r2k3" onclick="flytt(this,'r1k3','r2k2','r3k3','r3k3','svaret','r1k1','r1k2','r1k3','r2k1','r2k2','r2k3','r3k1','r3k2')">6</div>
+
+    <div id="r3k1" class="først" onclick="flytt(this,'r2k1','r3k2','r3k2','r3k2','svaret','r1k1','r1k2','r1k3','r2k1','r2k2','r2k3','r3k1','r3k2')"></div>
+    <div id="r3k2" onclick="flytt(this,'r2k2','r3k1','r3k3','r3k3','svaret','r1k1','r1k2','r1k3','r2k1','r2k2','r2k3','r3k1','r3k2')">7</div>
+    <div id="r3k3" onclick="flytt(this,'r2k3','r3k2','r3k2','r3k2','svaret','r1k1','r1k2','r1k3','r2k1','r2k2','r2k3','r3k1','r3k2')">5</div>
+
+    <p id="svaret" class="svar">Start spelet med å trykke på (ikkje dra) ruta du vil flytte.</p>
+
+    <script>
+        var teller = 0;
+        function flytt(trykt, alt1, alt2, alt3, alt4,konklusjon,s1,s2,s3,s4,s5,s6,s7,s8) {
+            if (document.getElementById(alt1).innerHTML == '') {
+                document.getElementById(alt1).innerHTML = trykt.innerHTML;
+                trykt.innerHTML = '';
+                teller++;
+            }
+            else if (document.getElementById(alt2).innerHTML == '') {
+                document.getElementById(alt2).innerHTML = trykt.innerHTML;
+                trykt.innerHTML = '';
+                teller++;
+            }
+            else if (document.getElementById(alt3).innerHTML == '') {
+                document.getElementById(alt3).innerHTML = trykt.innerHTML;
+                trykt.innerHTML = '';
+                teller++;
+            }
+            else if (document.getElementById(alt4).innerHTML == '') {
+                document.getElementById(alt4).innerHTML = trykt.innerHTML;
+                trykt.innerHTML = '';
+                teller++;
+            }
+            if (document.getElementById(s1).innerHTML == '1' && document.getElementById(s2).innerHTML == '2' && document.getElementById(s3).innerHTML == '3' && document.getElementById(s4).innerHTML == '4' && document.getElementById(s5).innerHTML == '5' && document.getElementById(s6).innerHTML == '6' && document.getElementById(s7).innerHTML == '7' && document.getElementById(s8).innerHTML == '8') {
+                document.getElementById(konklusjon).innerHTML = "Gratulerer! Du har løyst oppgåva. Du brukte " + teller + " flytt."
+            }
+            else {
+                document.getElementById(konklusjon).innerHTML = "Du har brukt " + teller + " flytt"
+            }
+        }
+    </script>
+</body>
+</html>
