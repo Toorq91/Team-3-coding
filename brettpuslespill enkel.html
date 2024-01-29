@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java</title>
+    <style>
+        #board {
+            display: grid;
+            grid-template-columns: repeat(4, 200px);
+            grid-template-rows: repeat(4, 200px);
+        }
+
+        #board>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid gray;
+            background-color: darkgray;
+        }
+        img {
+            width: 99%;
+        }
+    </style>
+</head>
+<body>
+    <div id="board">
+        <div id="bilde1" onclick="img1()"></div>
+        <div id="bilde2" onclick="img2()"></div>
+        <div id="bilde3" onclick="img3()"></div>
+        <div id="bilde4" onclick="img4()"></div>
+        <div id="bilde5" onclick="img5()"></div>
+        <div id="bilde6" onclick="img6()"></div>
+        <div id="bilde7" onclick="img7()"></div>
+        <div id="bilde8" onclick="img8()"></div>
+        <div id="bilde9" onclick="img9()"></div>
+        <div id="bilde10" onclick="img10()"></div>
+        <div id="bilde11" onclick="img11()"></div>
+        <div id="bilde12" onclick="img12()"></div>
+    </div>
+    
+    <script>
+        function img1() { 
+            document.getElementById('bilde1').innerHTML= '<img src=scream.jpg>';
+        }
+        function img2() { 
+            document.getElementById('bilde2').innerHTML= '<img src=sad.jpg>';
+        }
+        function img3() { 
+            document.getElementById('bilde3').innerHTML= '<img src=silly.png>';
+        }
+        function img4() { 
+            document.getElementById('bilde4').innerHTML= '<img src=sad.jpg>';
+        }
+        function img5() { 
+            document.getElementById('bilde5').innerHTML= '<img src=wdf.jpg>';
+        }
+        function img6() { 
+            document.getElementById('bilde6').innerHTML= '<img src=scream.jpg>';
+        }
+        function img7() { 
+            document.getElementById('bilde7').innerHTML= '<img src=wdf.jpg>';
+        }
+        function img8() { 
+            document.getElementById('bilde8').innerHTML= '<img src=silly.png>';
+        }
+        function img9() { 
+            document.getElementById('bilde9').innerHTML= '<img src=angur.jpg>';
+        }
+        function img10() { 
+            document.getElementById('bilde10').innerHTML= '<img src=smile.jpg>';
+        }
+        function img11() { 
+            document.getElementById('bilde11').innerHTML= '<img src=angur.jpg>';
+        }
+        function img12() { 
+            document.getElementById('bilde12').innerHTML= '<img src=smile.jpg>';
+        }
+    </script>
+    
+</body>
+</html>
