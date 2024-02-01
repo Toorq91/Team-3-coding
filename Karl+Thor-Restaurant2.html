@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+</head>
+
+<body>
+    <h3>Legg inn bestilling</h3>
+    <div id="rullemenyMat">
+        <select onchange="selectFood(this.value)">
+            <option value="" selected disabled>Choose food</option>
+            <option>Laks</option>
+            <option>Biff</option>
+            <option>Kylling</option>
+            <option>Suppe</option>
+        </select>
+    </div>
+    <div id="rullemenyDrikke">
+        <select onchange="selectDrinks(this.value)">
+            <option value="" selected disabled>Choose drinks</option>
+            <option>Øl</option>
+            <option>Vin</option>
+            <option>Vann</option>
+            <option>Champis</option>
+        </select>
+    </div>
+    <div id="orders"></div>
+    <div><button onclick="findTotal()">Betal</button></div>
+    <div id="totalen"></div>
+    <script>
+        let foodCost = 0
+        let drinkCost = 0
+        function selectFood(mat) {
+            let thisOrder = 0
+            if (mat == 'Laks') {
+                thisOrder += 130
+            }
+            else if (mat == 'Biff') {
+                thisOrder += 140
+            }
+            else if (mat == 'Kylling') {
+                thisOrder += 170
+            }
+            else if (mat == 'Suppe') {
+                thisOrder += 100
+            }
+            foodCost += thisOrder
+            document.getElementById('orders').innerHTML += mat + ' - ' + thisOrder + ' kroner<br/>'
+            document.getElementById('rullemenyMat').innerHTML = /*HTML*/`
+                <select onchange="selectFood(this.value)">
+                    <option value="" selected disabled>Choose drinks</option>
+                    <option>Laks</option>
+                    <option>Biff</option>
+                    <option>Kylling</option>
+                    <option>Suppe</option>
+                </select>
+            `
+        }
+        function selectDrinks(drikke) {
+            let thisOrder = 0
+            if (drikke == 'Øl') {
+                thisOrder += 115
+            }
+            else if (drikke == 'Vin') {
+                thisOrder += 136
+            }
+            else if (drikke == 'Vann') {
+                thisOrder += 43
+            }
+            else if (drikke == 'Champis') {
+                thisOrder += 195
+            }
+            drinkCost += thisOrder
+            document.getElementById('orders').innerHTML += drikke + ' - ' + thisOrder + ' kroner<br/>'
+            document.getElementById('rullemenyDrikke').innerHTML = /*HTML*/`
+                <select onchange="selectDrinks(this.value)">
+                    <option value="" selected disabled>Choose food</option>
+                    <option>Øl</option>
+                    <option>Vin</option>
+                    <option>Vann</option>
+                    <option>Champis</option>
+                </select>
+            `
+        }
+        function findTotal() {
+            let totals = foodCost + drinkCost
+            document.getElementById('totalen').innerHTML = 'Totalt ' + totals + ' kroner'
+        }
+    </script>
+</body>
+
+</html>
