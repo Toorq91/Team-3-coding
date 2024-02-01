@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matbestilling</title>
+    <style>
+        div.rad {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(6, auto);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rad">
+        <div>Per har bestilt:</div>
+        <div>Pål har bestilt:</div>
+        <div>Espen har bestilt:</div>
+        <div>Thor har bestilt:</div>
+        <div>Karl har bestilt:</div>
+
+        <div>
+            <select id="perMat" onchange="addMatPer(this.value)">
+                <option value="" disabled selected hidden>Mat Meny</option>
+                <option>Laks</option>
+                <option>Kylling</option>
+                <option>Biff</option>
+                <option>Suppe</option>
+            </select>
+        </div>
+        <div>
+            <select id="pålMat" onchange="addMatPål(this.value)">
+                <option value="" disabled selected hidden>Mat Meny</option>
+                <option>Laks</option>
+                <option>Kylling</option>
+                <option>Biff</option>
+                <option>Suppe</option>
+            </select>
+        </div>
+        <div>
+            <select id="espenMat" onchange="addMatEspen(this.value)">
+                <option value="" disabled selected hidden>Mat Meny</option>
+                <option>Laks</option>
+                <option>Kylling</option>
+                <option>Biff</option>
+                <option>Suppe</option>
+            </select>
+        </div>
+        <div>
+            <select id="thorMat" onchange="addMatThor(this.value)">
+                <option value="" disabled selected hidden>Mat Meny</option>
+                <option>Laks</option>
+                <option>Kylling</option>
+                <option>Biff</option>
+                <option>Suppe</option>
+            </select>
+        </div>
+        <div>
+            <select id="karlMat" onchange="addMatKarl(this.value)">
+                <option value="" disabled selected hidden>Mat Meny</option>
+                <option>Laks</option>
+                <option>Kylling</option>
+                <option>Biff</option>
+                <option>Suppe</option>
+            </select>
+        </div>
+
+        <div>
+            <select id="perDrikke" onchange="addDrikkePer(this.value)">
+                <option value="" disabled selected hidden>Drikke Meny</option>
+                <option>Vann</option>
+                <option>Øl</option>
+                <option>Vin</option>
+                <option>Champagne</option>
+            </select>
+        </div>
+        <div>
+            <select id="pålDrikke" onchange="addDrikkePål(this.value)">
+                <option value="" disabled selected hidden>Drikke Meny</option>
+                <option>Vann</option>
+                <option>Øl</option>
+                <option>Vin</option>
+                <option>Champagne</option>
+            </select>
+        </div>
+        <div>
+            <select id="espenDrikke" onchange="addDrikkeEspen(this.value)">
+                <option value="" disabled selected hidden>Drikke Meny</option>
+                <option>Vann</option>
+                <option>Øl</option>
+                <option>Vin</option>
+                <option>Champagne</option>
+            </select>
+        </div>
+        <div>
+            <select id="thorDrikke" onchange="addDrikkeThor(this.value)">
+                <option value="" disabled selected hidden>Drikke Meny</option>
+                <option>Vann</option>
+                <option>Øl</option>
+                <option>Vin</option>
+                <option>Champagne</option>
+            </select>
+        </div>
+        <div>
+            <select id="karlDrikke" onchange="addDrikkeKarl(this.value)">
+                <option value="" disabled selected hidden>Drikke Meny</option>
+                <option>Vann</option>
+                <option>Øl</option>
+                <option>Vin</option>
+                <option>Champagne</option>
+            </select>
+        </div>
+        <div id="perMeny"></div>
+        <div id="pålMeny"></div>
+        <div id="pespenMeny"></div>
+        <div id="thorMeny"></div>
+        <div id="karlMeny"></div>
+        <div><button onclick="perCalc()">Betal</button></div>
+        <div><button>Betal</button></div>
+        <div><button>Betal</button></div>
+        <div><button>Betal</button></div>
+        <div><button>Betal</button></div>
+        <div id="perTotal"></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        
+        
+
+    <script>
+        let perMatCost = 0
+        let perDrikkeCost = 0
+        function addMatPer(mat) {
+            let denneMatPer=0
+            if (mat == 'Laks') {
+                denneMatPer += 295
+            }
+            else if (mat == 'Kylling') {
+                denneMatPer += 235
+            }
+            else if (mat == 'Biff') {
+                denneMatPer += 399
+            }
+            else if (mat == 'Suppe') {
+                denneMatPer += 199
+            }
+            document.getElementById('perMeny').innerHTML += mat + ' - ' + denneMatPer + ' kroner.<br/>'
+            perMatCost += denneMatPer
+        }
+        function addDrikkePer(drikke) {
+            let denneDrikkePer=0
+            if (drikke == 'Vann') {
+                denneDrikkePer += 42
+            }
+            else if (drikke == 'Øl') {
+                denneDrikkePer += 135
+            }
+            else if (drikke == 'Vin') {
+                denneDrikkePer += 119
+            }
+            else if (drikke == 'Champagne') {
+                denneDrikkePer += 199
+            }
+            document.getElementById('perMeny').innerHTML += drikke + ' - ' + denneDrikkePer + ' kroner.<br/>'
+            perDrikkeCost += denneDrikkePer
+        }
+        function perCalc() {
+            let perTotal = perMatCost + perDrikkeCost;
+            document.getElementById('perTotal').innerHTML = 'Totalsum ' + perTotal + ' kroner.'
+        }
+
+        // let totalCost = perDrikkeCost+perMatCost
+        //function calculateMatogDrikke() {
+        //    let costLaks = document.getElementById('costlaks').valueAsNumber 200
+        //}
+
+
+        /*function calculateAmounts() {
+            let paidAmountPer = document.getElementById('perPaid').valueAsNumber
+            let paidAmountPål = document.getElementById('pålPaid').valueAsNumber
+            let paidAmountEspen = document.getElementById('espenPaid').valueAsNumber
+            let paidAmountThor = document.getElementById('thorPaid').valueAsNumber
+            let paidAmountKarl = document.getElementById('karlPaid').valueAsNumber
+
+            let totalPaidAmount = paidAmountPer + paidAmountPål + paidAmountEspen + paidAmountThor + paidAmountKarl;
+            let costPerPerson = totalPaidAmount / 5;
+
+            let balancePer = paidAmountPer - costPerPerson;
+            let balancePål = paidAmountPål - costPerPerson;
+            let balanceEspen = paidAmountEspen - costPerPerson;
+            let balanceThor = paidAmountThor - costPerPerson;
+            let balanceKarl = paidAmountKarl - costPerPerson;
+
+            document.getElementById('app').innerHTML = 
+            Total kostnad: ${totalPaidAmount} <br>
+            Kostnad per person: ${costPerPerson} <br>
+            Per - til gode/skylder: ${balancePer} <br>
+            Pål - til gode/skylder: ${balancePål} <br>
+            Espen - til gode/skylder: ${balanceEspen} <br>
+            Thor - til gode/skylder: ${balanceThor} <br>
+            Karl - til gode/skylder: ${balanceKarl} <br>
+            ;
+        }
+        */
+    </script>
+</body>
+
+</html>
