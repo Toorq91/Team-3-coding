@@ -129,7 +129,6 @@
                 
                 <br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                 <button onclick="fullReset()">Reset</button>
-                <div style="text-align: center;" id="ricky">foobar</div>
                 ${won == 1 ? `<h1 class='winner'>Du har vunnet</h1>
                                 <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> 
                                 `
@@ -137,25 +136,11 @@
             `;
         }
 
-        //Tull og fanteri (ikke relatert til oppgaven)
-        function playvid() {
-            document.getElementById('ricky').innerHTML = `
-            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
-            <video id="tada" width="640" height="480">
-            <source src="https://foxi.me/tada/tada.mp4" type="video/mp4">
-            <source src="https://foxi.me/tada/tada.ogg" type="video/ogg"></video>
-            <div>foobar2</div>`
-            var vid = document.getElementById('tada')
-                vid.volume = 0.1;
-                vid.play();
-        }
-
         // controller
         function moveSmallDisk(toTowerIndex) {
             smallDiskTowerIndex = toTowerIndex;
             if (smallDiskTowerIndex == 2 && mediumDiskTowerIndex == 2 && largeDiskTowerIndex == 2) {
                 won = 1;
-                playvid();
             }
             updateView();
         }
@@ -182,6 +167,7 @@
             largeDiskTowerIndex = 0;
             mediumDiskTowerIndex = 0;
             smallDiskTowerIndex = 0;
+            won = 0;
             updateView();
         }
 
