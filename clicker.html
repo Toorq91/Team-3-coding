@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        let points = 0;
+        let upgrades = 1;
+
+        doClick();
+        function doClick() {
+            points += upgrades;
+            show();
+        }
+
+        function upgrade() {
+            if (points >= 10) {
+                upgrades++;
+                points -= 10;
+                show();
+            }
+        }
+
+        function show() {
+            let html = /*HTML*/`                
+                Poeng: ${points}
+                <button onclick="doClick()">+</button>
+            `;
+            if (points >= 10) {
+                html += /*HTML*/`<button onclick="upgrade()">oppgrader</button>`;
+            }
+            document.getElementById('app').innerHTML = html;
+        }
+
+    </script>
+</body>
+
+</html>
