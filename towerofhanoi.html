@@ -45,27 +45,13 @@
             border: 4px solid gray;
             margin-bottom: 5px;
         }
-        .winner {
-            color: green;
-            position: absolute;
-            top: 200px;
-            left: 23%;
-            font-size: 1000%;
-            border: solid;
-            border-color: green;
-            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            border-width: 15px;
-            padding-left: 25px;
-            padding-right: 25px;
-            background-color: lightgrey;
-            text-shadow: black 5px 0 10px;
-        }
     </style>
 </head>
 
 <body>
     <div id="app">
     </div>
+
     <script>
         // model
         //   hvor er diskene, 0 = venstre tårn, 1 = midten, 2 = høyre
@@ -73,7 +59,15 @@
         let smallDiskTowerIndex = 0;
         let mediumDiskTowerIndex = 0;
         let largeDiskTowerIndex = 0;
-        let won = 0;
+        let smallCanMoveToLeft = false;
+        let mediumCanMoveToLeft = false;
+        let largeCanMoveToLeft = false;
+        let smallCanMoveToMiddle = true;
+        let mediumCanMoveToMiddle = false;
+        let largeCanMoveToMiddle = false;
+        let smallCanMoveToRight = true;
+        let mediumCanMoveToRight = false;
+        let largeCanMoveToRight = false;
 
         // view 
         updateView();
@@ -111,37 +105,33 @@
                         </div>
                     </div>
                 </div>
-                <br/>
                 Flytt liten disk til 
-                <button ${smallDiskTowerIndex == 0 ? 'disabled' : ''} onclick="moveSmallDisk(0)">venstre tårn</button>
-                <button ${smallDiskTowerIndex == 1 ? 'disabled' : ''} onclick="moveSmallDisk(1)">midtre tårn</button>
-                <button ${smallDiskTowerIndex == 2 ? 'disabled' : ''} onclick="moveSmallDisk(2)">høyre tårn</button>
+                <button onclick="moveSmallDisk(0)">venstre tårn</button>
+                <button onclick="moveSmallDisk(1)">midtre tårn</button>
+                <button onclick="moveSmallDisk(2)">høyre tårn</button>
                 <br/>
                 Flytt medium disk
-                <button ${mediumDiskTowerIndex == 0 || smallDiskTowerIndex == 0 || mediumDiskTowerIndex == smallDiskTowerIndex ? 'disabled' : ''} onclick="moveMediumDisk(0)">venstre tårn</button>
-                <button ${mediumDiskTowerIndex == 1 || smallDiskTowerIndex == 1 || mediumDiskTowerIndex == smallDiskTowerIndex ? 'disabled' : ''} onclick="moveMediumDisk(1)">midtre tårn</button>
-                <button ${mediumDiskTowerIndex == 2 || smallDiskTowerIndex == 2 || mediumDiskTowerIndex == smallDiskTowerIndex ? 'disabled' : ''} onclick="moveMediumDisk(2)">høyre tårn</button>
+                <button onclick="moveMediumDisk(0)">venstre tårn</button>
+                <button onclick="moveMediumDisk(1)">midtre tårn</button>
+                <button onclick="moveMediumDisk(2)">høyre tårn</button>
                 <br/>
                 Flytt stor disk
-                <button ${largeDiskTowerIndex == 0 || smallDiskTowerIndex == 0 || mediumDiskTowerIndex == 0 || smallDiskTowerIndex == largeDiskTowerIndex || mediumDiskTowerIndex == largeDiskTowerIndex ? 'disabled' : ''} onclick="moveLargeDisk(0)">venstre tårn</button>
-                <button ${largeDiskTowerIndex == 1 || smallDiskTowerIndex == 1 || mediumDiskTowerIndex == 1 || smallDiskTowerIndex == largeDiskTowerIndex || mediumDiskTowerIndex == largeDiskTowerIndex ? 'disabled' : ''} onclick="moveLargeDisk(1)">midtre tårn</button>
-                <button ${largeDiskTowerIndex == 2 || smallDiskTowerIndex == 2 || mediumDiskTowerIndex == 2 || smallDiskTowerIndex == largeDiskTowerIndex || mediumDiskTowerIndex == largeDiskTowerIndex ? 'disabled' : ''} onclick="moveLargeDisk(2)">høyre tårn</button>
-                
-                <br/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <button onclick="fullReset()">Reset</button>
-                ${won == 1 ? `<h1 class='winner'>Du har vunnet</h1>
-                                <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> 
-                                `
-                                 : ''}
+                <button onclick="moveLargeDisk(0)" id="leftLarge">venstre tårn</button>
+                <button onclick="moveLargeDisk(1)">midtre tårn</button>
+                <button onclick="moveLargeDisk(2)">høyre tårn</button>
+                <br/>
             `;
+            //if(largeDiskTowerIndex == 0) {
+            //    document.getElementById('leftLarge').disabled = true;
+            //}
+            //else if (largeDiskTowerIndex => 0) {
+            //    document.getElementById('leftLarge').disabled = false;
+            //}
         }
 
         // controller
         function moveSmallDisk(toTowerIndex) {
             smallDiskTowerIndex = toTowerIndex;
-            if (smallDiskTowerIndex == 2 && mediumDiskTowerIndex == 2 && largeDiskTowerIndex == 2) {
-                won = 1;
-            }
             updateView();
         }
 
@@ -163,15 +153,8 @@
             largeDiskTowerIndex = toTowerIndex;
             updateView();
         }
-        function fullReset() {
-            largeDiskTowerIndex = 0;
-            mediumDiskTowerIndex = 0;
-            smallDiskTowerIndex = 0;
-            won = 0;
-            updateView();
-        }
 
-        /*document.body.innerHTML += `
+        document.body.innerHTML += `
             <h4>Oppgaver</h4>
             Disse oppgavene er ment å løses med kun funksjoner, variabler, operatorer, if-setninger og MVC. Man trenger
             ikke bruke løkker eller lister.
@@ -200,7 +183,7 @@
                     tilfellet en knapp for å starte spillet på nytt. 
                 </li>
             </ol>
-        `;*/
+        `;
     </script>
 </body>
 
