@@ -56,12 +56,18 @@
     <div id="theBoard" ></div>
     <br/><br/>
     <div id="dice" onclick="theDice()">⚅</div>
-    웃 
+    <button onclick="movePlayer(1)">1</button>
+    <button onclick="movePlayer(2)">2</button>
+    <button onclick="movePlayer(3)">3</button>
+    <button onclick="movePlayer(4)">4</button>
+    <button onclick="movePlayer(5)">5</button>
+    <button onclick="movePlayer(6)">6</button>
+    
     <script>
         //model
         let startValue;
         let diceRoll;
-        let position = 0;
+        let playerPosition = 0;
 
         //view
         update();
@@ -84,10 +90,12 @@
             +createRow(19,1)
             +createRow(18,-1)
             +createRow(1,1)
-            +`<div class="gray">START</div>`;
+            +`<div class="gray" id="0">START</div>`;
+            document.getElementById(playerPosition).innerHTML += `웃`;
         }
+        
 
-        function createRow(startValue, change)
+        function createRow(startValue, change) 
         {
             let rowHtml = '';
             let squareCount = 0;
@@ -96,17 +104,46 @@
             {
                 rowHtml += `<div class="squares" id=${startValue+change*squareCount}>${startValue+change*squareCount}</div>`;
                 squareCount++;
+                // if player move (? positions)
             }
             return rowHtml;
         }
 
-        function getLadderFrom(squareNo)
+        function getLadderFrom(squareNo) 
         {
-            // document.getElementById('1').style.background-color = 'green';
-            return null;
+            if (squareNo == 1) return 40;
+            if (squareNo == 8) return 10;
+            if (squareNo == 24) return 5;
+            if (squareNo == 33) return 3;
+            if (squareNo == 36) return 52;
+            if (squareNo == 42) return 30;
+            if (squareNo == 43) return 62;
+            if (squareNo == 49) return 79;
+            if (squareNo == 56) return 37;
+            if (squareNo == 64) return 27;
+            if (squareNo == 65) return 82;
+            if (squareNo == 68) return 85;
+            if (squareNo == 74) return 12;
+            if (squareNo == 87) return 70;
+            
+            return squareNo;
+        }
+
+        function movePlayer(movePiece) 
+        {
+            //document.getElementById('0').innerHTML += `웃`;
+            playerPosition += movePiece;            
+            if(playerPosition > 90)
+                playerPosition -= 90;
+            if(playerPosition == 90)
+                alert('oink'); //FIXME: løs senere (eller aldri)
+            playerPosition = getLadderFrom(playerPosition);
+            createBoard();
+            colors();
         }
         
-        function colors() {
+        function colors() 
+        {
             //Green
             document.getElementById('1').classList.replace('squares', 'green');
             document.getElementById('8').classList.replace('squares', 'green');
@@ -142,10 +179,13 @@
             //Slutt
             document.getElementById('90').classList.replace('squares', 'orange');
         }
-        function theDice() {
+        
+        function theDice() 
+        {
             diceRoll = Math.floor(Math.random() * 6) + 1;
             let theDices = ['⚀','⚁','⚂','⚃','⚄','⚅']
             document.getElementById('dice').innerHTML = theDices[diceRoll-1]
+            movePlayer(diceRoll);
         }
     </script>
 </body>
